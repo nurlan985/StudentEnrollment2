@@ -15,8 +15,6 @@ public class EntryServiceImpl implements EntryService{
 	@Autowired
 	EntryRepository entryRepository;
 	
-	private List<Entry> entries;
-	
 	@Override
 	public List<Entry> getAllEntry(){
 		List<Entry> entry = new ArrayList<>();
