@@ -5,6 +5,7 @@ package edu.miu.cs.cs544.group1.service.impl;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,9 +13,6 @@ import edu.miu.cs.cs544.group1.domain.Offering;
 import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
 import edu.miu.cs.cs544.group1.repository.OfferingRepository;
 import edu.miu.cs.cs544.group1.service.OfferingService;
-
-
-;
 
 @Service
 @Transactional
@@ -52,7 +50,8 @@ public class OfferingServiceImpl implements OfferingService {
 		Offering offering = offeringRepository.findById(offferingId)
 				.orElseThrow(() -> new NoSuchResouceException("No Offering with id :", offferingId));
 		
-		offering.setCode(offering_update.getCode());
+		offering.setBlock(offering_update.getBlock());
+		offering.setCourse(offering_update.getCourse());
 		
 		Offering updatedOffering = offeringRepository.save(offering);
 		
@@ -60,12 +59,14 @@ public class OfferingServiceImpl implements OfferingService {
 	}
 
 	@Override
-	public void deleteOffering(long offeringId) throws NoSuchResouceException {
+	public ResponseEntity<Void> deleteOffering(long offeringId) throws NoSuchResouceException {
 
 		Offering offering = offeringRepository.findById(offeringId)
 				.orElseThrow(() -> new NoSuchResouceException("No Offering with id :", offeringId));
 
 		offeringRepository.delete(offering);
+		
+		return ResponseEntity.noContent().build();
 	}
 
 	
