@@ -31,6 +31,9 @@ public class Offering {
 		return id;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
 
 	public Course getCourse() {
 		return course;
@@ -47,6 +50,5 @@ public class Offering {
 	public void setBlock(Block block) {
 		this.block = block;
 	}
-	
 
 }

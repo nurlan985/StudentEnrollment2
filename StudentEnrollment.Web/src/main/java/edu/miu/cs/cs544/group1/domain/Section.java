@@ -1,32 +1,41 @@
 package edu.miu.cs.cs544.group1.domain;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+
+import edu.miu.cs.cs544.group1.domain.security.Faculty;
 
 
 @Entity
 public class Section {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long sectionId;
-	
-	
-	
+
 	@ManyToOne
-	@Column(name="facultId")
-	
+	@JoinColumn(name = "facultyId", nullable = false)
 	private Faculty faculty;
 	
 	@ManyToOne
-	@Column(name="offeringId")
+	@JoinColumn(name = "offeringId", nullable = false)
+
 	private Offering offering;
 	
 	
 	public Section() {
 		super();
+	}
+
+
+	public Section(Faculty faculty, Offering offering) {
+		super();
+		this.faculty = faculty;
+		this.offering = offering;
 	}
 
 

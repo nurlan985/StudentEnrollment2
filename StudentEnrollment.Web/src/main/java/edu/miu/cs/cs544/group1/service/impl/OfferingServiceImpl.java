@@ -46,7 +46,6 @@ public class OfferingServiceImpl implements OfferingService {
 	
 	@Override
 	public Offering updateOffering(long offferingId, Offering offering_update) {
-		
 		Offering offering = offeringRepository.findById(offferingId)
 				.orElseThrow(() -> new NoSuchResouceException("No Offering with id :", offferingId));
 		

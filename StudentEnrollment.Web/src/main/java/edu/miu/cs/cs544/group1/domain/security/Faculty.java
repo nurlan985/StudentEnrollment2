@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.group1.domain;
+package edu.miu.cs.cs544.group1.domain.security;
 
 import javax.persistence.Entity;
 
