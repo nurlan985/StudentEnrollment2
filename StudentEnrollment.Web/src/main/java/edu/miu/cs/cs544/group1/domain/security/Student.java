@@ -1,10 +1,8 @@
-package edu.miu.cs.cs544.group1.domain;
+package edu.miu.cs.cs544.group1.domain.security;
 
 import java.util.Set;
 
 import javax.persistence.Entity;
-
-import edu.miu.cs.cs544.group1.domain.security.Role;
 
 @Entity
 public class Student extends Person {

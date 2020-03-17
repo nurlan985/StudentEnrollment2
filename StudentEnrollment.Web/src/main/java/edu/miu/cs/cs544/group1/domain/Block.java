@@ -11,25 +11,19 @@ import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-@Entity(name = "Block_Table")
+@Entity
 public class Block {
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue
 	private long id;
 
-	@Column(name = "Block_Code")
 	private String code;
-	@Column(name = "Block_Name")
 	private String name;
-	@Column(name = "Block_Semester")
 	private String semester;
-	@Column(name = "Block_SequenceNumber")
 	private int blockSequencyNo;
-	@Column(name = "Block_StartDate")
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
-	@Column(name = "Block_EndDate")
 	@Temporal(TemporalType.DATE)
 	private Date endDate;
 	

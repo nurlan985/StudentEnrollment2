@@ -6,8 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-@Entity(name="Course_table")
-
+@Entity
 public class Course {
 	
 	
@@ -15,13 +14,10 @@ public class Course {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	
-	@Column(name="Course_Description")
 	private String description;
 	
-	@Column(name="Course_Name")
 	private String name;
 	
-	@Column(name="Course_Code")
 	private String code;
 
 	public Long getId() {
