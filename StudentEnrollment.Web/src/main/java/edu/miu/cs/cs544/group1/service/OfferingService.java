@@ -14,7 +14,7 @@ public interface OfferingService {
 	public Offering addOfferings(Offering offerings);
 	public List<Offering> getOfferings();
 	public Offering getOffering(long OfferingId) throws NoSuchResouceException;
-	public Offering updaeOffering(long offferingId, Offering offering);
+	public Offering updateOffering(long offferingId, Offering offering);
 	public void deleteOffering(long offeringId);
 	
 
