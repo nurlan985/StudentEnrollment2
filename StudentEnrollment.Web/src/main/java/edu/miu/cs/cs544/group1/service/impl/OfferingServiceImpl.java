@@ -48,11 +48,12 @@ public class OfferingServiceImpl implements OfferingService {
 	
 	@Override
 	public Offering updaeOffering(long offferingId, Offering offering_update) {
-		
+
 		Offering offering = offeringRepository.findById(offferingId)
 				.orElseThrow(() -> new NoSuchResouceException("No Offering with id :", offferingId));
 		
-		offering.setCode(offering_update.getCode());
+		offering.setBlock(offering_update.getBlock());
+		offering.setCourse(offering_update.getCourse());
 		
 		Offering updatedOffering = offeringRepository.save(offering);
 		

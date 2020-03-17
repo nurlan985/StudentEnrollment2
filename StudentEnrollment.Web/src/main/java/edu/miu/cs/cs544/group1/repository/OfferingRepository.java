@@ -13,6 +13,6 @@ import edu.miu.cs.cs544.group1.domain.Offering;
 @Repository
 public interface OfferingRepository extends  JpaRepository<Offering,Long>{
 	
-	public List<Offering> getAll();
+
 
 }

@@ -1,7 +1,9 @@
 package edu.miu.cs.cs544.group1.domain;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
@@ -12,15 +14,16 @@ import edu.miu.cs.cs544.group1.domain.security.Faculty;
 @Entity
 public class Section {
 	@Id
-	@GeneratedValue
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long sectionId;
-	
+
 	@ManyToOne
 	@JoinColumn(name = "facultyId", nullable = false)
 	private Faculty faculty;
 	
 	@ManyToOne
 	@JoinColumn(name = "offeringId", nullable = false)
+
 	private Offering offering;
 	
 	
