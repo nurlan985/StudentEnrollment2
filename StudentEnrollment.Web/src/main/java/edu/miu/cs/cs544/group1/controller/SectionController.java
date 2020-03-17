@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.service.SectionService;
@@ -21,6 +22,7 @@ import edu.miu.cs.cs544.group1.service.impl.SectionServiceImpl;
 
 @RestController
 @EnableAutoConfiguration
+@SessionAttributes({"currentUser"})
 public class SectionController {
 	@Autowired
 	SectionServiceImpl sectionservice;
