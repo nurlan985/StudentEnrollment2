@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.serviceImpl;
+package edu.miu.cs.cs544.service.impl;
 
 import org.springframework.stereotype.Service;
 
