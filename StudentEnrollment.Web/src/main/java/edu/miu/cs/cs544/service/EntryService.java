@@ -10,5 +10,5 @@ public interface EntryService {
 	public Optional<Entry> getEntry(Long id);
 	public Entry addEntry(Entry entry);
 	public Entry updateEntry(Long id, Entry entry) ;
-	public Long deletEntry(Long id);
+	public Long deleteEntry(Long id);
 }

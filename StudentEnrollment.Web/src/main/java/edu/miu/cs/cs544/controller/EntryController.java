@@ -18,27 +18,33 @@ public class EntryController {
 	@Autowired
 	private EntryService entryService;
 	
+	//a method to display all entries.
 	@RequestMapping("/Entries")
 	public List<Entry> getAllEntry(){
 		return entryService.getAllEntry();
 	}
-		
+	
+	//a method to display a specific entry.
 	@RequestMapping("/Entries/{id}")
 	public Optional<Entry> getEntry(@PathVariable Long id) {
 		return entryService.getEntry(id);
 	}
 	
+	//a method to to insert new entry
 	@RequestMapping(method = RequestMethod.POST, value="/entries")
 	public Entry addEntry(@RequestBody Entry entry) {
 		return entryService.addEntry(entry);
 	}
+	
+	//a method to update existing entry.
 	@RequestMapping(method = RequestMethod.PUT, value="/entries/{id}")
 	public Entry updateEntry(@PathVariable Long id, @RequestBody Entry entry) {
 		return entryService.updateEntry(id, entry);
 	}
 	
+	//a method to delete a single entry.
 	@RequestMapping(method = RequestMethod.DELETE, value="/entries/{id}")
-	public Long deleEntry(@PathVariable Long id) {
-		return entryService.deletEntry(id);
+	public Long deleteEntry(@PathVariable Long id) {
+		return entryService.deleteEntry(id);
 	}
 }
