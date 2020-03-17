@@ -36,7 +36,7 @@ public class EntryServiceImpl implements EntryService{
 		return entry;
 	}
 	@Override
-	public Long deletEntry(Long id) {
+	public Long deleteEntry(Long id) {
 		entryRepository.deleteById(id);
 		return id;
 	}
