@@ -25,7 +25,7 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 
-	@PostMapping(value = "/courses", produces = "appication/jason")
+	@PostMapping(value = "/courses")
 	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
 
 		HttpHeaders headers = new HttpHeaders();
