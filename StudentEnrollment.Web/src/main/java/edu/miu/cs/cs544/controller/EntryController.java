@@ -19,13 +19,13 @@ public class EntryController {
 	private EntryService entryService;
 	
 	//a method to display all entries.
-	@RequestMapping("/Entries")
+	@RequestMapping("/entries")
 	public List<Entry> getAllEntry(){
 		return entryService.getAllEntry();
 	}
 	
 	//a method to display a specific entry.
-	@RequestMapping("/Entries/{id}")
+	@RequestMapping("/entries/{id}")
 	public Optional<Entry> getEntry(@PathVariable Long id) {
 		return entryService.getEntry(id);
 	}
