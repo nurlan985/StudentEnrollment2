@@ -8,3 +8,6 @@
 /.metadata/
 >>>>>>> Stashed changes
 StudentEnrollment.EurekaServer/bin/*
+StudentEnrollment.Domain/bin/*
+StudentEnrollment.Security/bin/*
+StudentEnrollment.Web/bin/*
