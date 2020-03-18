@@ -1,4 +1,4 @@
-package edu.miu.cs.cs544.group1.service.impl;
+ package edu.miu.cs.cs544.group1.service.impl;
 
 
 
@@ -7,6 +7,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.miu.cs.cs544.group1.domain.Offering;
@@ -15,7 +16,7 @@ import edu.miu.cs.cs544.group1.repository.OfferingRepository;
 import edu.miu.cs.cs544.group1.service.OfferingService;
 
 @Service
-@Transactional
+@Transactional(propagation = Propagation.REQUIRES_NEW)
 public class OfferingServiceImpl implements OfferingService {
 
 	@Autowired

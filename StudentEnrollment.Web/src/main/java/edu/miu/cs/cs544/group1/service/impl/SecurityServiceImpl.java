@@ -40,7 +40,7 @@ public class SecurityServiceImpl implements SecurityService{
 	    				  "Nurlan", 
 	    				  "nurlan985@gmail.com", 
 	    				  "123", 
-	    				  new HashSet<Role>(Arrays.asList(Role.ROLEADMIN)), 
+	    				  new HashSet<Role>(Arrays.asList(Role.ROLEFACULTY)), 
 	    				  "Professor"));
 		
 		studentRepository.save(

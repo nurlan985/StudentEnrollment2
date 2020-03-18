@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import edu.miu.cs.cs544.group1.domain.Offering;
 import edu.miu.cs.cs544.group1.service.OfferingService;
@@ -21,12 +22,13 @@ import edu.miu.cs.cs544.group1.service.OfferingService;
 
 
 @RestController
+@RequestMapping(value="/offerings")
 public class OfferingController {
 	
 	@Autowired
 	OfferingService offeringService;
-	
-	@GetMapping(value="/offerings")
+
+	@GetMapping(value="/")
 	public ResponseEntity<List<Offering>> getCourses(){
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -43,7 +45,7 @@ public class OfferingController {
 		
 	}
 	
-	@PostMapping(value="/offerings")
+	@PostMapping(value="/")
 	public ResponseEntity<Offering> addOfferings(@RequestBody Offering offering ){
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -62,7 +64,7 @@ public class OfferingController {
 		
 	}
 	
-	@GetMapping(value="/offerings/{offeringId}")
+	@GetMapping(value="/{offeringId}")
 	public ResponseEntity<Offering> getOffering(@PathVariable long offeringId){
 		
 		Offering offering =  offeringService.getOffering(offeringId);
@@ -76,7 +78,7 @@ public class OfferingController {
 		
 	}
 	
-	@PutMapping(value="/offerings/{offeringId}")
+	@PutMapping(value="/{offeringId}")
 	public ResponseEntity<Offering> updateCourse(@PathVariable long offeringId,@RequestBody Offering offering){
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -95,7 +97,7 @@ public class OfferingController {
 	}
 	
 
-	@DeleteMapping(value="offerings/delete/{offeringId}")
+	@DeleteMapping(value="/{offeringId}")
 	public ResponseEntity<Void> deleteCourse(@PathVariable long offeringId){
 
 		offeringService.deleteOffering(offeringId);
