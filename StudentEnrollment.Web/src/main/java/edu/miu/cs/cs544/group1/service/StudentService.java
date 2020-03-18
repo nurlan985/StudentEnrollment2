@@ -9,7 +9,7 @@ import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
 
 public interface StudentService {
 	
-	public Student addStduent(Student students);
+	public Student addStudent(Student students);
 
 	public List<Student> getStudents();
 
@@ -19,5 +19,8 @@ public interface StudentService {
 
 	public ResponseEntity<Void> deleteStudent(long studentId) throws NoSuchResouceException;
 
+	public List<Student> getStudentsByFacultyIdAndSectionId(long facultyId, long sectionId);
+
+	public List<Student> getStudentsBySectionId(long sectionId);
 
 }

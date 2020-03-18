@@ -11,18 +11,6 @@ import edu.miu.cs.cs544.group1.service.EntryService;
 
 public class EntryServiceImplTest {
 
-	@InjectMocks 
-	@Autowired
-	   EntryService entryServiceImpl;
 
-	   @Mock
-	   @Autowired
-	   EntryRepository calcService;
-
-	   @Test
-	   public void addEntry(){
-	      
-	   }
-	}
 
 }

@@ -17,7 +17,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import edu.miu.cs.cs544.group1.domain.Offering;
+import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.service.OfferingService;
+import edu.miu.cs.cs544.group1.service.SectionService;
 
 
 
@@ -28,6 +30,9 @@ public class OfferingController {
 	@Autowired
 	OfferingService offeringService;
 
+	@Autowired
+	SectionService sectionService;
+	
 	@GetMapping(value="/")
 	public ResponseEntity<List<Offering>> getCourses(){
 		
@@ -105,7 +110,10 @@ public class OfferingController {
 		return  ResponseEntity.noContent().build();
 	}
 
-	
+	@GetMapping(value = "/sections/{offeringId}")
+	public List<Section> getSections(@PathVariable long offeringId) {
+		return sectionService.getSectionsByOfferingId(offeringId);
+	}
 	
 
 }

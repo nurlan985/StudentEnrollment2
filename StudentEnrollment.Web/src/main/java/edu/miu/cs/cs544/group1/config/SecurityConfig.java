@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.group1.config;
 
 import org.springframework.context.annotation.Bean;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
@@ -39,13 +40,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
         	.and()
             .csrf().disable()
             .authorizeRequests()
-            .antMatchers("/admin/**").hasAnyRole(Role.ROLEADMIN.toString())
-            .antMatchers("/faculty/**").hasAnyRole(Role.ROLEFACULTY.toString())
-            .antMatchers("/student/**").hasAnyRole(Role.ROLESTUDENT.toString())
-//            .antMatchers("/security/**").hasAnyRole(Role.ROLESTUDENT.toString(),Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString())
-            .antMatchers("/security/people").hasAnyRole(Role.ROLEADMIN.toString())
-            .antMatchers("/security/people-faculty").hasAnyRole(Role.ROLEFACULTY.toString())
-            .antMatchers("/security/people-student").hasAnyRole(Role.ROLESTUDENT.toString())
+            .antMatchers(HttpMethod.POST, "/sections/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/sections/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/sections/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/sections/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
             
             .antMatchers("/anonymous*").anonymous()// access=none
             .antMatchers("/login*").permitAll()

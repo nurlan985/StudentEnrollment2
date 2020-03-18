@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 import org.hibernate.annotations.Columns;
 
@@ -23,10 +24,17 @@ import edu.miu.cs.cs544.group1.domain.security.Student;
 
 
 @Entity
-public class Section{
+@NamedQuery(name = "Section.findAllSectionsByCourseId", query = "select s FROM Section s  WHERE s.offering.course.id = ?1")
+@NamedQuery(name = "Section.findAllSectionsByBlockId", query = "select s FROM Section s  WHERE s.offering.block.id = ?1")
+@NamedQuery(name = "Section.findAllByOfferingId", query = "select s FROM Section s  WHERE s.offering.id = ?1")
+@NamedQuery(name = "Section.findAllByFacultyId", query = "select s FROM Section s  WHERE s.faculty.id = ?1")
+@NamedQuery(name = "Section.findAllByStudentId", query = "select s FROM Student stu JOIN stu.sections s WHERE stu.id = ?1")
+@NamedQuery(name = "Section.findAllStudentsByFacultyIdAndSectionId", query = "select s FROM Section sec JOIN sec.students s WHERE sec.faculty.id = ?1 and sec.id = ?2")
+@NamedQuery(name = "Section.findAllStudentsBySectionId", query = "SELECT s FROM Section sec JOIN sec.students s WHERE sec.id = ?1")
+public class Section {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private long sectionId;
+	private long id;
 	
 	@Column(name="sectionDesc")
 	private String name;
@@ -47,9 +55,12 @@ public class Section{
 		super();
 	}
 
-
-	
-
+	public Section(String name, Faculty faculty, Offering offering) {
+		super();
+		this.name = name;
+		this.faculty = faculty;
+		this.offering = offering;
+	}
 
 	public Faculty getFaculty() {
 		return faculty;
@@ -71,13 +82,13 @@ public class Section{
 	}
 
 
-	public Long getSectionId() {
-		return sectionId;
+	public Long getId() {
+		return id;
 	}
 
 
-	public void setSectionId(long sectionId) {
-		this.sectionId = sectionId;
+	public void setId(long id) {
+		this.id = id;
 	}
 
 

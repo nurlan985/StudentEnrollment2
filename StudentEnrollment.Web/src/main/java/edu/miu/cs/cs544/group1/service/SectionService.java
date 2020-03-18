@@ -11,8 +11,12 @@ public interface SectionService {
 	public Section  getSection(Long Id);
 	public Section updateSection(Long Id, Section section) throws Exception;
 	public Section deleteSection(Long id);
-		
+	public List<Section> getSectionsByCourseId(long courseId);
+	public List<Section> getSectionsByBlockId(long blockId);
+	public List<Section> getSectionsByOfferingId(long offeringId);
+	public List<Section> getSectionsByFacultyId(long facultyId);
 			
+	public List<Section> getSectionsByStudentId(long studentId);
 	
 
 }

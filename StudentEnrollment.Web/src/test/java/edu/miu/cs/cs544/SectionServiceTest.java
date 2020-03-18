@@ -36,7 +36,7 @@ public class SectionServiceTest {
 	
 	@Test
 	public void deleteSectionTest() {
-		sectionService.deleteSection(section);
+		sectionService.deleteSection(section.getId());
 		verify(sectionRepo, times(1)).delete(section);
 	}
 }

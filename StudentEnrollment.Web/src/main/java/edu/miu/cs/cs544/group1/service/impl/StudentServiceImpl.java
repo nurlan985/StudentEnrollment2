@@ -11,7 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 
 import edu.miu.cs.cs544.group1.domain.security.Student;
 import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
-
+import edu.miu.cs.cs544.group1.repository.SectionRepository;
 import edu.miu.cs.cs544.group1.repository.StudentRepository;
 import edu.miu.cs.cs544.group1.service.StudentService;
 
@@ -20,9 +20,12 @@ public class StudentServiceImpl implements  StudentService {
 	
 	@Autowired
 	StudentRepository studentRepository;
+	
+	@Autowired
+	SectionRepository sectionRepository;
 
 	@Override
-	public Student addStduent(Student students) {
+	public Student addStudent(Student students) {
 		
 		return studentRepository.save(students);
 	}
@@ -49,6 +52,16 @@ public class StudentServiceImpl implements  StudentService {
 	public ResponseEntity<Void> deleteStudent(long studentId) throws NoSuchResouceException {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public List<Student> getStudentsByFacultyIdAndSectionId(long facultyId, long sectionId) {
+		return sectionRepository.findAllStudentsByFacultyIdAndSectionId(facultyId, sectionId);
+	}
+
+	@Override
+	public List<Student> getStudentsBySectionId(long sectionId) {
+		return sectionRepository.findAllStudentsBySectionId(sectionId);
 	}
 
 }

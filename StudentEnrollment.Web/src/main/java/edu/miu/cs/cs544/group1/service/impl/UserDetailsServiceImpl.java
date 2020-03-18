@@ -8,12 +8,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.miu.cs.cs544.group1.domain.security.Person;
 import edu.miu.cs.cs544.group1.repository.PersonRepository;
 
+
+@Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Autowired

@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.http.ResponseEntity;
 
 import edu.miu.cs.cs544.group1.domain.Course;
+import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
 
 public interface CourseService {
