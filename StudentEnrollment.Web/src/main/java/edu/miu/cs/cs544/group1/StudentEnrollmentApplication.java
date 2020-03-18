@@ -33,7 +33,7 @@ public class StudentEnrollmentApplication {
     				  "Nurlan", 
     				  "nurlan985@gmail.com", 
     				  "123", 
-    				  new HashSet<Role>(Arrays.asList(Role.ROLE_ADMIN)), 
+    				  new HashSet<Role>(Arrays.asList(Role.ROLEADMIN)), 
     				  "Professor"));
 
     };
