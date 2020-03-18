@@ -1,12 +1,16 @@
 package edu.miu.cs.cs544.group1.service.impl;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import edu.miu.cs.cs544.group1.domain.Address;
+import edu.miu.cs.cs544.group1.domain.Course;
 import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
 import edu.miu.cs.cs544.group1.repository.AddressRepository;
 import edu.miu.cs.cs544.group1.service.AddressService;
@@ -45,15 +49,22 @@ public class AdddessServiceImpl implements AddressService{
 		
 		return updatedAddress;		
 	}
-
 	@Override
-	public boolean deleteAddress(long addressId) {
-		Address address = addressRepository.findById(addressId).orElseThrow(() -> 
-		new  NoSuchResouceException("No Address found  with" , addressId));
+	public ResponseEntity<Void> deleteAddress(long addressId) throws NoSuchResouceException {
+
+		Address address = addressRepository.findById(addressId)
+				.orElseThrow(() -> new NoSuchResouceException("No Address found  with", addressId));
 
 		addressRepository.delete(address);
-		
-		return true;
+
+		return ResponseEntity.noContent().build();
+
+	}
+
+
+	@Override
+	public List<Address> getAddresses() {
+		return addressRepository.findAll();
 	}
 
 }

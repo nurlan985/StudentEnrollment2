@@ -33,6 +33,11 @@ public class Address {
 		this.country = country;
 	}
 
+	public long getId() {
+		return id;
+	}
+
+
 	public String getStreet() {
 		return street;
 	}
