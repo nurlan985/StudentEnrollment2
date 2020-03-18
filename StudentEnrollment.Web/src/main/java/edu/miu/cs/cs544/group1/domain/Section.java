@@ -1,6 +1,7 @@
 package edu.miu.cs.cs544.group1.domain;
 
-import java.io.Serializable;
+
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,14 +10,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
-import org.hibernate.annotations.Columns;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import edu.miu.cs.cs544.group1.domain.security.Faculty;
+import edu.miu.cs.cs544.group1.domain.security.Student;
 
 
 @Entity
@@ -28,15 +30,18 @@ public class Section{
 	@Column(name="sectionDesc")
 	private String name;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "facultyId", nullable = true)
 	//@JsonIgnore
 	private Faculty faculty;
 	
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "offeringId", nullable = true)
 	//@JsonIgnore
 	private Offering offering;
+	
+	@ManyToMany(mappedBy="sections")
+	private List<Student> students;
 	
 	
 	public Section() {
@@ -87,11 +92,22 @@ public class Section{
 	}
 
 
-	
-	
-	
-	
-	
+
+
+
+	public List<Student> getStudents() {
+		return students;
+	}
+
+
+
+
+
+	public void setStudents(List<Student> students) {
+		this.students = students;
+	}
+
+
 	
 	
 
