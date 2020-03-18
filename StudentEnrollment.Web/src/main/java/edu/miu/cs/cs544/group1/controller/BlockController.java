@@ -15,15 +15,26 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import edu.miu.cs.cs544.group1.domain.Address;
 import edu.miu.cs.cs544.group1.domain.Block;
+import edu.miu.cs.cs544.group1.domain.Offering;
+import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.service.BlockService;
+import edu.miu.cs.cs544.group1.service.OfferingService;
+import edu.miu.cs.cs544.group1.service.SectionService;
 
 @RestController
 @RequestMapping("/block")
 public class BlockController {
 	@Autowired
 	BlockService blockService;
+	
+
+	@Autowired
+	SectionService sectionService;
+	
+	@Autowired
+	OfferingService offeringService;
+	
 	@PostMapping(value = "/")
 	public ResponseEntity<Block> addBlock(@RequestBody Block block) {
 
@@ -91,5 +102,15 @@ public class BlockController {
 		blockService.deleteBlock(blockId);
 		
 		return  ResponseEntity.noContent().build();
+	}
+
+	@GetMapping(value = "/sections/{blockId}")
+	public List<Section> getSections(@PathVariable long blockId) {
+		return sectionService.getSectionsByBlockId(blockId);
+	}
+	
+	@GetMapping(value = "/offerings/{blockId}")
+	public List<Offering> getOfferings(@PathVariable long blockId) {
+		return offeringService.getOfferingsByBlockId(blockId);
 	}
 }

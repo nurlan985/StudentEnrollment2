@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 
 import edu.miu.cs.cs544.group1.domain.Address;
@@ -48,6 +49,9 @@ public class Student extends Person {
 
 	public void setStudentId(String studentId) {
 		this.studentId = studentId;
+	}
+	public void addSection(Section section) {
+		sections.add(section);
 	}
 	
 }

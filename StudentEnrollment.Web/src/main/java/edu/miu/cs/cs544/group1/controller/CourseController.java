@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.miu.cs.cs544.group1.domain.Course;
+import edu.miu.cs.cs544.group1.domain.Offering;
+import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.service.CourseService;
+import edu.miu.cs.cs544.group1.service.OfferingService;
+import edu.miu.cs.cs544.group1.service.SectionService;
 
 
 
@@ -27,6 +31,13 @@ public class CourseController {
 	@Autowired
 	CourseService courseService;
 
+	@Autowired
+	SectionService sectionService;
+	
+	@Autowired
+	OfferingService offeringService;
+	
+	
 	@PostMapping(value = "/")
 	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
 
@@ -98,6 +109,17 @@ public class CourseController {
 		courseService.deleteCourse(courseId);
 		
 		return  ResponseEntity.noContent().build();
+	}
+	
+
+	@GetMapping(value = "/sections/{courseId}")
+	public List<Section> getSections(long courseId) {
+		return sectionService.getSectionsByCourseId(courseId);
+	}
+	
+	@GetMapping(value = "/offerings/{courseId}")
+	public List<Offering> getOfferings(long courseId) {
+		return offeringService.getOfferingsByCourseId(courseId);
 	}
 
 }

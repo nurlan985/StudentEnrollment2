@@ -19,16 +19,19 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.miu.cs.cs544.group1.domain.Section;
+import edu.miu.cs.cs544.group1.domain.security.Student;
 import edu.miu.cs.cs544.group1.service.SectionService;
+import edu.miu.cs.cs544.group1.service.StudentService;
 
 
 @RestController
-@EnableAutoConfiguration
-@SessionAttributes({"currentUser"})
-@RequestMapping("/section")
+@RequestMapping("/sections")
 public class SectionController {
 	@Autowired
 	SectionService sectionservice;
+	
+	@Autowired
+	StudentService studentService;
 	
 	@GetMapping("/")
 	public List<Section> getSections(){
@@ -42,10 +45,10 @@ public class SectionController {
 		return sectionservice.createSection(section);
 	}
 	
-	@GetMapping("/{Id}")
-	public Section getSection(@PathVariable Long Id) {
+	@GetMapping("/{id}")
+	public Section getSection(@PathVariable Long id) {
 		
-		return sectionservice.getSection(Id);
+		return sectionservice.getSection(id);
 	}
 	
 
@@ -66,5 +69,10 @@ public class SectionController {
 		return sectionservice.deleteSection(id);
 	}
 	
+
+	@GetMapping(value = "/students/{sectionId}")
+	public List<Student> getStudents(@PathVariable long sectionId) {
+		return studentService.getStudentsBySectionId(sectionId);
+	}
 	
 }

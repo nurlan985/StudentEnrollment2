@@ -69,6 +69,16 @@ public class OfferingServiceImpl implements OfferingService {
 		return ResponseEntity.noContent().build();
 	}
 
+	@Override
+	public List<Offering> getOfferingsByCourseId(long courseId) {
+		return offeringRepository.findAllByCourseId(courseId);
+	}
+
+	@Override
+	public List<Offering> getOfferingsByBlockId(long blockId) {
+		return offeringRepository.findAllByBlockId(blockId);
+	}
+
 	
 
 }

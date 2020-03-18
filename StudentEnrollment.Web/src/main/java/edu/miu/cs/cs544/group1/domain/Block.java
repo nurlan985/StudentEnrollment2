@@ -29,6 +29,18 @@ public class Block {
 	private Date endDate;
 	
 	
+	public Block(String code, String name, Semester semester, int blockSequencyNo, Date startDate, Date endDate) {
+		super();
+		this.code = code;
+		this.name = name;
+		this.semester = semester;
+		this.blockSequencyNo = blockSequencyNo;
+		this.startDate = startDate;
+		this.endDate = endDate;
+	}
+
+	public Block() {	}
+
 	public Long getId() {
 		return id;
 	}

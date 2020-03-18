@@ -20,6 +20,22 @@ public class Course {
 	
 	private String code;
 
+	
+	
+	public Course() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public Course(String code, String name, String description) {
+		super();
+		this.description = description;
+		this.name = name;
+		this.code = code;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

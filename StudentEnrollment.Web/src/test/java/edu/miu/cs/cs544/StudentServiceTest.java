@@ -33,7 +33,7 @@ public class StudentServiceTest {
 	@Test
 	public void addStudentTest() {
 		Set<Role> roles = new HashSet<Role>();
-		roles.add(Role.ROLE_STUDENT);
+		roles.add(Role.ROLESTUDENT);
 		Student student = new Student("James", "ij@abc.xyz", "12345", roles, "610569");
 		
 		when(studentRepo.save(student)).thenReturn(student);
@@ -43,10 +43,10 @@ public class StudentServiceTest {
 	@Test
 	public void deleteStudentTest() {
 		Set<Role> roles = new HashSet<Role>();
-		roles.add(Role.ROLE_STUDENT);
+		roles.add(Role.ROLESTUDENT);
 		Student student = new Student("James", "ij@abc.xyz", "12345", roles, "610569");
 		
-		studentService.deleteStudent(student);
+		studentService.deleteStudent(student.getId());
 		verify(studentRepo, times(1)).delete(student);
 		
 	} 

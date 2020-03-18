@@ -7,8 +7,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = "Section.findAllByCourseId", query = "select o FROM Offering o  WHERE o.course.id = ?1")
+@NamedQuery(name = "Section.findAllByBlockId", query = "select o FROM Offering o  WHERE o.block.id = ?1")
 public class Offering {
 	
 	@Id
@@ -23,6 +26,20 @@ public class Offering {
 	@JoinColumn(name = "blockId", nullable = false)
 	private Block block;
 	
+	
+	
+	
+	public Offering() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Offering(Course course, Block block) {
+		super();
+		this.course = course;
+		this.block = block;
+	}
+
 	public String getCode() {
 		return course.getCode() + "-" + block.getCode();
 	}
