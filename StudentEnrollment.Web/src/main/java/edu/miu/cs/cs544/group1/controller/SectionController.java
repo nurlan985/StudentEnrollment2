@@ -16,7 +16,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 =======
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+<<<<<<< HEAD
 >>>>>>> new version
+=======
+import org.springframework.web.bind.annotation.RequestMapping;
+>>>>>>> last commit of 17th work
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -26,6 +30,7 @@ import edu.miu.cs.cs544.group1.service.SectionService;
 
 @RestController
 <<<<<<< HEAD
+<<<<<<< HEAD
 @EnableAutoConfiguration
 @SessionAttributes({"currentUser"})
 <<<<<<< HEAD
@@ -34,7 +39,13 @@ import edu.miu.cs.cs544.group1.service.SectionService;
 =======
 
 >>>>>>> new version
+<<<<<<< HEAD
 >>>>>>> new version
+=======
+=======
+@RequestMapping("/section")
+>>>>>>> last commit of 17th work
+>>>>>>> last commit of 17th work
 public class SectionController {
 	@Autowired
 	SectionService sectionservice;
