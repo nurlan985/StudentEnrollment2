@@ -103,7 +103,4 @@ public class OfferingController {
 		return  ResponseEntity.noContent().build();
 	}
 
-	
-	
-
 }
