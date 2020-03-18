@@ -35,25 +35,36 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
 
     @Override
     protected void configure(final HttpSecurity http) throws Exception {
-        http.httpBasic().and()
-                .csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/people/**").hasAnyRole(Role.ROLEADMIN.toString())
-                .antMatchers("/faculty/**").hasAnyRole(Role.ROLEFACULTY.toString())
-                .antMatchers("/student/**").hasAnyRole(Role.ROLESTUDENT.toString())
-
-                .antMatchers("/anonymous*").anonymous()// access=none
-                .antMatchers("/login*").permitAll().anyRequest().authenticated()
-                .and()
-                .formLogin()
-                .loginProcessingUrl("/login")
-                .defaultSuccessUrl("/", true)
-                .failureUrl("/login?error=true")
-                .and()
-                .logout()
-                .logoutSuccessUrl("/login")
-                .logoutUrl("/logout")
-                .deleteCookies("JSESSIONID");
-        http.sessionManagement().maximumSessions(3).maxSessionsPreventsLogin(true).and().sessionFixation();
+        http.httpBasic()
+        	.and()
+            .csrf().disable()
+            .authorizeRequests()
+            .antMatchers("/admin/**").hasAnyRole(Role.ROLEADMIN.toString())
+            .antMatchers("/faculty/**").hasAnyRole(Role.ROLEFACULTY.toString())
+            .antMatchers("/student/**").hasAnyRole(Role.ROLESTUDENT.toString())
+//            .antMatchers("/security/**").hasAnyRole(Role.ROLESTUDENT.toString(),Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString())
+            .antMatchers("/security/people").hasAnyRole(Role.ROLEADMIN.toString())
+            .antMatchers("/security/people-faculty").hasAnyRole(Role.ROLEFACULTY.toString())
+            .antMatchers("/security/people-student").hasAnyRole(Role.ROLESTUDENT.toString())
+            
+            .antMatchers("/anonymous*").anonymous()// access=none
+            .antMatchers("/login*").permitAll()
+            .anyRequest().authenticated()
+            .and()
+            .formLogin()
+            .loginProcessingUrl("/login")
+            .defaultSuccessUrl("/", true)
+            .failureUrl("/login?error=true")
+            .and()
+            .logout()
+            .logoutSuccessUrl("/login")
+            .logoutUrl("/logout")
+            .deleteCookies("JSESSIONID");
+        http
+        	.sessionManagement()
+        	.maximumSessions(3)
+        	.maxSessionsPreventsLogin(true)
+        	.and()
+        	.sessionFixation();
     }
 }
