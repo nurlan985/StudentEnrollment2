@@ -1,23 +1,29 @@
 package edu.miu.cs.cs544.group1;
 
-import java.util.Arrays;
-import java.util.HashSet;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import edu.miu.cs.cs544.group1.domain.security.Faculty;
-import edu.miu.cs.cs544.group1.domain.security.Role;
-import edu.miu.cs.cs544.group1.repository.FacultyRepository;
+import springfox.documentation.builders.PathSelectors;
+import springfox.documentation.builders.RequestHandlerSelectors;
+import springfox.documentation.spi.DocumentationType;
+import springfox.documentation.spring.web.plugins.Docket;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
-//@EnableJpaRepositories("edu.miu.cs.cs544.group1.repository")
+@EnableSwagger2
 public class StudentEnrollmentApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(StudentEnrollmentApplication.class, args);
+	}
+	
+
+	@Bean
+	public Docket swaggerConfig() {
+		return new Docket(DocumentationType.SWAGGER_2)
+				.select()
+				.paths(PathSelectors.ant("/security/*"))
+				.apis(RequestHandlerSelectors.basePackage("edu.miu.cs.cs544.gourp1"))
+				.build();
 	}
 }

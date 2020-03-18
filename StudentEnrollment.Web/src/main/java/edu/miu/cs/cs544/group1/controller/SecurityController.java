@@ -17,8 +17,17 @@ public class SecurityController {
 	SecurityService securityService;
 
 	@GetMapping(path="/people", produces = "application/json")
-    public List<Person> getEmployees() {
+    public List<Person> getPeople() {
         return securityService.getPeople();
     }
+	
+	@GetMapping(path="/people-student", produces = "application/json")
+	public List<Person> getPeopleStudent() {
+		return securityService.getPeople();
+	}
+	@GetMapping(path="/people-faculty", produces = "application/json")
+	public List<Person> getPeopleFaculty() {
+		return securityService.getPeople();
+	}
 
 }

@@ -25,11 +25,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
-	public UserDetails loadUserByUsername( String username) throws UsernameNotFoundException {
-	    Person user = personRepository.findByEmail(username).orElse(null);
+	public UserDetails loadUserByUsername( String email) throws UsernameNotFoundException {
+	    Person user = personRepository.findByEmail(email).orElse(null);
 		UserBuilder builder = null;
 	    if (user != null) {
-	      builder = org.springframework.security.core.userdetails.User.withUsername(username);
+	      builder = org.springframework.security.core.userdetails.User.withUsername(email);
 	      builder.password(new BCryptPasswordEncoder().encode(user.getPassword()));
 	      builder.roles(user.getRoles().parallelStream()
 	    		  .map(role -> role.toString())
