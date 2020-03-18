@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 
@@ -41,6 +42,15 @@ public class SecurityServiceImpl implements SecurityService{
 	    				  "123", 
 	    				  new HashSet<Role>(Arrays.asList(Role.ROLEADMIN)), 
 	    				  "Professor"));
+		
+		studentRepository.save(
+				new Student(
+						"Julius", 
+						"jjjingo@miu.edu",
+						"12345",
+						new HashSet<Role> (Arrays.asList(Role.ROLESTUDENT)),
+						"610576"));
+										
 	}
 	@Override
 	public Student addStudent(Student student) {
