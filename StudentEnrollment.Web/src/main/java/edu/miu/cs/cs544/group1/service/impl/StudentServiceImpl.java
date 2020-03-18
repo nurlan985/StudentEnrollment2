@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import edu.miu.cs.cs544.group1.domain.security.Student;
 import edu.miu.cs.cs544.group1.repository.StudentRepository;
 import edu.miu.cs.cs544.group1.service.StudentService;
 
+@Service
 public class StudentServiceImpl implements StudentService {
 	
 	@Autowired
