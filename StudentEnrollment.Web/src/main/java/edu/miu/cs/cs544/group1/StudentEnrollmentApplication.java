@@ -14,6 +14,7 @@ import org.springframework.context.annotation.Bean;
 
 import edu.miu.cs.cs544.group1.domain.Block;
 import edu.miu.cs.cs544.group1.domain.Course;
+import edu.miu.cs.cs544.group1.domain.Entry;
 import edu.miu.cs.cs544.group1.domain.Offering;
 import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.domain.Semester;
@@ -22,6 +23,7 @@ import edu.miu.cs.cs544.group1.domain.security.Role;
 import edu.miu.cs.cs544.group1.domain.security.Student;
 import edu.miu.cs.cs544.group1.repository.BlockRepository;
 import edu.miu.cs.cs544.group1.repository.CourseRepository;
+import edu.miu.cs.cs544.group1.repository.EntryRepository;
 import edu.miu.cs.cs544.group1.repository.FacultyRepository;
 import edu.miu.cs.cs544.group1.repository.OfferingRepository;
 import edu.miu.cs.cs544.group1.repository.SectionRepository;
@@ -52,7 +54,8 @@ public class StudentEnrollmentApplication {
 			CourseRepository courseRepository,
 			BlockRepository blockRepository,
 			OfferingRepository offeringRepository,
-			SectionRepository sectionRepository
+			SectionRepository sectionRepository,
+			EntryRepository entryRepository
 			) {
 		return (args) -> {
 			Faculty nurlan = new Faculty("Nurlan", "nurlan985@gmail.com", "123",
@@ -72,15 +75,16 @@ public class StudentEnrollmentApplication {
 			Section sec = new Section("CS544-2020-03-01", nurlan, off);
 			
 			sec = sectionRepository.save(sec);
-		Student stu =new Student(
-				"Julius", 
-				"jjjingo@miu.edu",
-				"12345",
-				new HashSet<Role> (Arrays.asList(Role.ROLESTUDENT)),
-				"610576");
-		stu = studentRepository.save(stu);
-
-			
+			Student stu =new Student(
+					"Julius", 
+					"jjjingo@miu.edu",
+					"12345",
+					new HashSet<Role> (Arrays.asList(Role.ROLESTUDENT)),
+					"610576");
+			stu = studentRepository.save(stu);
+	
+			Entry entry = new Entry("November 2019", df.parse("10/30/2019"), df.parse("11/02/2019"));
+			entryRepository.save(entry);
 		};
 	}
 }
