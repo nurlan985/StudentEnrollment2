@@ -1,6 +1,6 @@
-package edu.miu.cs.cs544;
+package edu.miu.cs.cs544.group1.service.impl;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -14,14 +14,13 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.repository.SectionRepository;
-import edu.miu.cs.cs544.group1.service.SectionService;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @SpringBootTest
-public class SectionServiceTest {
+class SectionServiceImplTest {
 
 	@Autowired
-	SectionService sectionService;
+	SectionServiceImpl sectionService;
 	
 	@MockBean
 	SectionRepository sectionRepo;
@@ -39,4 +38,6 @@ public class SectionServiceTest {
 		sectionService.deleteSection(section.getId());
 		verify(sectionRepo, times(1)).delete(section);
 	}
+
+
 }

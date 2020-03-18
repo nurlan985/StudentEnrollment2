@@ -114,6 +114,4 @@ public class OfferingController {
 	public List<Section> getSections(@PathVariable long offeringId) {
 		return sectionService.getSectionsByOfferingId(offeringId);
 	}
-	
-
 }
