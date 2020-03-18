@@ -54,6 +54,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
                 .logoutSuccessUrl("/login")
                 .logoutUrl("/logout")
                 .deleteCookies("JSESSIONID");
-        http.sessionManagement().maximumSessions(2).maxSessionsPreventsLogin(true).and().sessionFixation();
+        http.sessionManagement().maximumSessions(3).maxSessionsPreventsLogin(true).and().sessionFixation();
     }
 }
