@@ -18,6 +18,7 @@ import edu.miu.cs.cs544.group1.domain.Entry;
 import edu.miu.cs.cs544.group1.domain.Section;
 
 @Entity
+@NamedQuery(name = "Student.findOneByEmail", query = "SELECT s FROM Student s WHERE s.email = ?1")
 public class Student extends Person {
 	private String studentId;
 	
