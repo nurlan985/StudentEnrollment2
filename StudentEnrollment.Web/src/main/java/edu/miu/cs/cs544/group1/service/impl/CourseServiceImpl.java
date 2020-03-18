@@ -47,13 +47,13 @@ public class CourseServiceImpl implements CourseService {
 		Course course = courseRepository.findById(courseId)
 				.orElseThrow(() -> new NoSuchResouceException("No Course found  with", courseId));
 		
+		
 		course.setCode(course_update.getCode());
 		course.setName(course_update.getName());
 		course.setDescription(course_update.getDescription());
 
 		Course updatedCourse = courseRepository.save(course);
-
-		//Course a=courseRepository.getOne(courseId);
+//		Course a=courseRepository.getOne(courseId);
 		
 		return updatedCourse;
 	}

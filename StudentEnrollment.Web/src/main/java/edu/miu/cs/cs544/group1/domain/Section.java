@@ -1,7 +1,7 @@
 package edu.miu.cs.cs544.group1.domain;
 
-
 import java.util.List;
+import java.io.Serializable;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,9 +13,10 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Columns;
 
-//import com.fasterxml.jackson.annotation.JsonIgnore;
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import edu.miu.cs.cs544.group1.domain.security.Faculty;
 import edu.miu.cs.cs544.group1.domain.security.Student;
@@ -29,10 +30,8 @@ public class Section{
 	
 	@Column(name="sectionDesc")
 	private String name;
-
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "facultyId", nullable = true)
-	//@JsonIgnore
 	private Faculty faculty;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
@@ -92,23 +91,13 @@ public class Section{
 	}
 
 
-
-
-
 	public List<Student> getStudents() {
 		return students;
 	}
-
-
-
-
 
 	public void setStudents(List<Student> students) {
 		this.students = students;
 	}
 
-
-	
-	
 
 }
