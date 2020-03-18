@@ -25,7 +25,7 @@ public class OfferingController {
 	
 	@Autowired
 	OfferingService offeringService;
-	
+
 	@GetMapping(value="/offerings")
 	public ResponseEntity<List<Offering>> getCourses(){
 		

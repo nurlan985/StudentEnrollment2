@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
@@ -23,29 +24,30 @@ import edu.miu.cs.cs544.group1.service.impl.SectionServiceImpl;
 @RestController
 @EnableAutoConfiguration
 @SessionAttributes({"currentUser"})
+@RequestMapping("/sections")
 public class SectionController {
 	@Autowired
 	SectionServiceImpl sectionservice;
 	
-	@GetMapping("/sections")
+	@GetMapping("/")
 	public List<Section> getSections(){
 		
 		return sectionservice.getSections();
 	}
 	
-	@PostMapping("/addSection")
+	@PostMapping("/add")
 	public Section saveSection(Section section) {
 		
 		return sectionservice.createSection(section);
 	}
 	
-	@GetMapping("section/{Id}")
+	@GetMapping("/{Id}")
 	public Optional<Section> getSection(@PathVariable Long Id) {
 		
 		return sectionservice.getSection(Id);
 	}
 	
-	@PatchMapping("/updateSection")
+	@PatchMapping("/update")
 	public Section updateSevtion(Section section) {
 		Long id= section.getSectionId();
 		
@@ -53,7 +55,7 @@ public class SectionController {
 	}
 	
 	
-	@DeleteMapping("/deleteSection")
+	@DeleteMapping("/delete")
 	public Section deleteSection(Section section) {
 		
 		return sectionservice.deleteSection(section);
