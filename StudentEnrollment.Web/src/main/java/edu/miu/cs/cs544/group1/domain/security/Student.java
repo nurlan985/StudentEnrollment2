@@ -1,12 +1,34 @@
 package edu.miu.cs.cs544.group1.domain.security;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+
+import edu.miu.cs.cs544.group1.domain.Address;
+import edu.miu.cs.cs544.group1.domain.Section;
 
 @Entity
 public class Student extends Person {
 	private String studentId;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Address homeAddress;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Address mailingAddress;
+	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name="Enrolment", joinColumns = {@JoinColumn(name="studentId")},
+	inverseJoinColumns = {@JoinColumn(name="sectionId")})
+	private List<Section> sections = new ArrayList();;
+	
 
 	public Student() { }
 

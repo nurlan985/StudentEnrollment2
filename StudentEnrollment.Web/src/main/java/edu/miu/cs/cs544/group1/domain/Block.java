@@ -3,10 +3,10 @@ package edu.miu.cs.cs544.group1.domain;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -20,7 +20,8 @@ public class Block {
 
 	private String code;
 	private String name;
-	private String semester;
+	@Enumerated(EnumType.STRING)
+	private Semester semester;
 	private int blockSequencyNo;
 	@Temporal(TemporalType.DATE)
 	private Date startDate;
@@ -44,10 +45,10 @@ public class Block {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public String getSemester() {
+	public Semester getSemester() {
 		return semester;
 	}
-	public void setSemester(String semester) {
+	public void setSemester(Semester semester) {
 		this.semester = semester;
 	}
 	public int getBlockSequencyNo() {

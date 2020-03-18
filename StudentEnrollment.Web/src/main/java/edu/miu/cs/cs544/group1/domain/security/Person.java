@@ -5,11 +5,13 @@ import javax.persistence.*;
 
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
+@NamedQuery(name = "Person.findByEmailAndPassword", query = "FROM Person p WHERE LOWER(p.email) = LOWER(?1) and p.password = ?2")
 public abstract class Person {
 	@Id
 	@GeneratedValue
 	private long id;
 	private String name;
+	@Column(unique = true)
 	private String email;
 	private String password;
 

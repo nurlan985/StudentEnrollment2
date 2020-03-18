@@ -10,8 +10,8 @@ import edu.miu.cs.cs544.group1.domain.*;
 @EnableAutoConfiguration
 public class MainController {
 
-	 @RequestMapping("/")
-    public String home() {
-        return "Hello World!";
-    }
+	@RequestMapping("/")
+	public String home() {
+		return "CS544. Group 1";
+	}
 }
