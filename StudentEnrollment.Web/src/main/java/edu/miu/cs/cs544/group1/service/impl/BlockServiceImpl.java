@@ -1,6 +1,9 @@
 package edu.miu.cs.cs544.group1.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,5 +47,20 @@ public class BlockServiceImpl implements BlockService{
 		return blockRepository.save(block);
 		
 	}
+	@Override
+	public ResponseEntity<Void> deleteBlock(long blockID) throws NoSuchResouceException {
 
+		Block block = blockRepository.findById(blockID)
+				.orElseThrow(() -> new NoSuchResouceException("No Block found  with", blockID));
+
+		blockRepository.delete(block);
+
+		return ResponseEntity.noContent().build();
+
+	}
+
+	@Override
+	public List<Block> getBlocks() {
+		return blockRepository.findAll();
+	}
 }
