@@ -12,6 +12,6 @@ public class MainController {
 
 	 @RequestMapping("/")
     public String home() {
-        return "Hello World!";
+        return "CS544. Group 1";
     }
 }

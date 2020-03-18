@@ -22,33 +22,9 @@ import edu.miu.cs.cs544.group1.service.SecurityService;
 
 @RestController
 public class SecurityController {
-    private static final Logger log = LogManager.getLogger(SecurityController.class);
 	@Autowired
 	SecurityService securityService;
-	
-	@PostMapping("/login")
-	public String Login(Model model, HttpSession session) {
-		log.info("postLogin()");
-//		if(securityService.checkLogin(email, password)) {
-//			model.addAttribute("currentUser", loggedInUser.getEmail());
-//	        session.setAttribute("userId", loggedInUser.getId());
-//			return "OK";
-//		}
-//		SecurityContext context = SecurityContextHolder.getContext();
-//		Authentication auth = context.getAuthentication();
-//        // read principal out of security context and set it to session
-//        UsernamePasswordAuthenticationToken authentication = (UsernamePasswordAuthenticationToken) auth;
-//        validatePrinciple(authentication.getPrincipal());
-//        Person loggedInUser = ((PersonDetails) authentication.getPrincipal()).getUserDetails();
-        		
-		return "Fail";
-	}
 
-    private void validatePrinciple(Object principal) {
-        if (!(principal instanceof PersonDetails)) {
-            throw new  IllegalArgumentException("Principal can not be null!");
-        }
-    }
 	@GetMapping(path="/people", produces = "application/json")
     public List<Person> getEmployees() {
         return securityService.getPeople();
