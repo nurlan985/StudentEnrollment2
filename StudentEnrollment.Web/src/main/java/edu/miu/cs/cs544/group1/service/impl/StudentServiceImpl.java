@@ -1,45 +1,54 @@
 package edu.miu.cs.cs544.group1.service.impl;
 
 import java.util.List;
-import java.util.Optional;
+
+import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
 import edu.miu.cs.cs544.group1.domain.security.Student;
+import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
+
 import edu.miu.cs.cs544.group1.repository.StudentRepository;
 import edu.miu.cs.cs544.group1.service.StudentService;
 
 @Service
-public class StudentServiceImpl implements StudentService {
+public class StudentServiceImpl implements  StudentService {
 	
 	@Autowired
-	private StudentRepository studentRepository;
+	StudentRepository studentRepository;
 
 	@Override
-	public Student addStudent(Student student) {
-		return studentRepository.save(student);
+	public Student addStduent(Student students) {
+		
+		return studentRepository.save(students);
 	}
 
 	@Override
-	public Optional<Student> getStudent(long id) {
-		return studentRepository.findById(id);
+	public List<Student> getStudents() {
+		
+		return  null;
 	}
 
 	@Override
-	public Student deleteStudent(Student student) {
-		studentRepository.delete(student);
-		return student;
-	}
-
-	@Override
-	public Student updateStudent(Student student) {
+	public Student getCourse(long studentId) throws NoSuchResouceException {
+		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public List<Student> getAllStudents() {
-		return studentRepository.findAll();
+	public Student updateStudent(long studentId, Student students) throws NoSuchResouceException {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ResponseEntity<Void> deleteStudent(long studentId) throws NoSuchResouceException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

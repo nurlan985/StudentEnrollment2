@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.miu.cs.cs544.group1.domain.Course;
@@ -20,12 +21,13 @@ import edu.miu.cs.cs544.group1.service.CourseService;
 
 
 @RestController
+@RequestMapping(value="/courses")
 public class CourseController {
 
 	@Autowired
 	CourseService courseService;
 
-	@PostMapping(value = "/courses", produces = "appication/jason")
+	@PostMapping(value = "/")
 	public ResponseEntity<Course> addCourse(@RequestBody Course course) {
 
 		HttpHeaders headers = new HttpHeaders();
@@ -41,7 +43,7 @@ public class CourseController {
 
 	}
 
-	@GetMapping(value = "/courses")
+	@GetMapping(value = "/")
 	public ResponseEntity<List<Course>> getCourses() {
 
 		HttpHeaders headers = new HttpHeaders();
@@ -58,7 +60,7 @@ public class CourseController {
 
 	// get course by course id
 
-	@GetMapping(value = "/courses/{courseId}")
+	@GetMapping(value = "/{courseId}")
 	public ResponseEntity<Course> getCourse(@PathVariable long courseId) {
 
 		Course course = courseService.getCourse(courseId);
@@ -72,7 +74,7 @@ public class CourseController {
 	}
 	
 	
-	@PutMapping(value="/courses/{courseId}")
+	@PutMapping(value="/{courseId}")
 	public ResponseEntity<Course> updateCourse(@PathVariable long courseId,@RequestBody Course course){
 		
 		HttpHeaders headers = new HttpHeaders();
@@ -90,7 +92,7 @@ public class CourseController {
 		return new ResponseEntity<Course>(course,headers, HttpStatus.OK);
 	}
 	
-	@DeleteMapping(value="courses/delete/{courseId}")
+	@DeleteMapping(value="/{courseId}")
 	public ResponseEntity<Void> deleteCourse(@PathVariable long courseId){
 
 		courseService.deleteCourse(courseId);

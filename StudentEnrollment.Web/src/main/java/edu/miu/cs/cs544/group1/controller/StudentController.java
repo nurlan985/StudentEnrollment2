@@ -28,5 +28,4 @@ public class StudentController {
 	public Optional<Student> getStudent(@PathVariable Long Id){
 		return studentService.getStudent(Id);
 	}
-
 }
