@@ -11,19 +11,21 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import edu.miu.cs.cs544.group1.domain.Entry;
+import edu.miu.cs.cs544.group1.domain.security.Student;
 import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
 import edu.miu.cs.cs544.group1.service.EntryService;
-
+import edu.miu.cs.cs544.group1.service.StudentService;
 
 @RestController
 @RequestMapping("/entries")
 public class EntryController {
 	@Autowired
 	private EntryService entryService;
+	@Autowired
+	private StudentService studentService;
 	
 	
 	//a method to display all entries.
@@ -36,14 +38,14 @@ public class EntryController {
 	
 	//a method to display a specific entry.
 	@GetMapping("/{id}")
-	public Entry getEntry(@PathVariable Long id) throws NoSuchResouceException{
+	public Entry getEntry(@PathVariable long entryId) throws NoSuchResouceException{
 		
-		Optional<Entry> entry = entryService.getEntry(id);
+		Optional<Entry> entry = entryService.getEntry(entryId);
         
         if(entry.isPresent()) {
             return entry.get();
         } else {
-            throw new NoSuchResouceException("No Entry exists for given id: ", id);
+            throw new NoSuchResouceException("No Entry exists for given id: ", entryId);
         }
 	}
 	
@@ -55,29 +57,33 @@ public class EntryController {
 	
 	//a method to update existing entry.
 	@PutMapping(value="/update/{id}")
-	public Entry updateEntry(@PathVariable Long id, @RequestBody Entry entry) {
-		Optional<Entry> e = entryService.getEntry(id);
+	public Entry updateEntry(@PathVariable long entryId, @RequestBody Entry entry) {
+		Optional<Entry> e = entryService.getEntry(entryId);
 		
 		if(e.isPresent()) {
-            return entryService.updateEntry(id, entry);
+            return entryService.updateEntry(entryId, entry);
         } else {
-            throw new NoSuchResouceException("No Entry exists for given id: ", id);
+            throw new NoSuchResouceException("No Entry exists for given id: ", entryId);
         }
-		
 	}
 	
 	//a method to delete a single entry.
 	@DeleteMapping(value="/delete/{id}")
-	public Long deleteEntry(@PathVariable Long id) {
+	public Long deleteEntry(@PathVariable long entryId) {
 		
-		Optional<Entry> entry = entryService.getEntry(id);
+		Optional<Entry> entry = entryService.getEntry(entryId);
 		
 		if(entry.isPresent()) {
-			return entryService.deleteEntry(id);
+			return entryService.deleteEntry(entryId);
         } else {
-            throw new NoSuchResouceException("No Entry exists for given id: ", id);
+            throw new NoSuchResouceException("No Entry exists for given id: ", entryId);
         }
-		
-		
 	}
+	//a method returning list of students in an entry
+	@GetMapping(value="/students/{id}")
+	public List<Student> getStudent(@PathVariable long entryId) {
+		
+		return studentService.getStudents();
+	}	
+	
 }
