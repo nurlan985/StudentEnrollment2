@@ -10,13 +10,18 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 import edu.miu.cs.cs544.group1.domain.Address;
+import edu.miu.cs.cs544.group1.domain.Entry;
 import edu.miu.cs.cs544.group1.domain.Section;
 
 @Entity
 public class Student extends Person {
 	private String studentId;
+	
+	@ManyToOne(cascade = CascadeType.ALL)
+	private Entry entry;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	private Address homeAddress;
@@ -27,7 +32,7 @@ public class Student extends Person {
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name="Enrolment", joinColumns = {@JoinColumn(name="studentId")},
 	inverseJoinColumns = {@JoinColumn(name="sectionId")})
-	private List<Section> sections = new ArrayList();;
+	private List<Section> sections = new ArrayList();
 	
 
 	public Student() { }
