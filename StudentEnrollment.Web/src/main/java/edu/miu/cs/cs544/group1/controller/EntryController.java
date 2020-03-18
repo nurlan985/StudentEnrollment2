@@ -4,7 +4,11 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -16,13 +20,14 @@ import edu.miu.cs.cs544.group1.service.EntryService;
 
 
 @RestController
+@RequestMapping("/entries")
 public class EntryController {
 	@Autowired
 	private EntryService entryService;
 	
 	
 	//a method to display all entries.
-	@RequestMapping("/getallentry")
+	@GetMapping("/")
 	public List<Entry> getAllEntry() {
 		
 		return entryService.getAllEntry();
@@ -30,7 +35,7 @@ public class EntryController {
 	}
 	
 	//a method to display a specific entry.
-	@RequestMapping("/getentry/{id}")
+	@GetMapping("/{id}")
 	public Entry getEntry(@PathVariable Long id) throws NoSuchResouceException{
 		
 		Optional<Entry> entry = entryService.getEntry(id);
@@ -43,13 +48,13 @@ public class EntryController {
 	}
 	
 	//a method to to insert new entry
-	@RequestMapping(method = RequestMethod.POST, value="/addentry")
+	@PostMapping(value="/add")
 	public Entry addEntry(@RequestBody Entry entry) {
 		return entryService.addEntry(entry);
 	}
 	
 	//a method to update existing entry.
-	@RequestMapping(method = RequestMethod.PUT, value="/updatentry/{id}")
+	@PutMapping(value="/update/{id}")
 	public Entry updateEntry(@PathVariable Long id, @RequestBody Entry entry) {
 		Optional<Entry> e = entryService.getEntry(id);
 		
@@ -62,7 +67,7 @@ public class EntryController {
 	}
 	
 	//a method to delete a single entry.
-	@RequestMapping(method = RequestMethod.DELETE, value="/deletentry/{id}")
+	@DeleteMapping(value="/delete/{id}")
 	public Long deleteEntry(@PathVariable Long id) {
 		
 		Optional<Entry> entry = entryService.getEntry(id);

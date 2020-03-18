@@ -54,4 +54,8 @@ public class EntryServiceImpl implements EntryService{
 		entryRepository.deleteById(id);
 		return id;
 	}
+	
+	public void doNothing() {
+		
+	}
 }
