@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
 
 
 @Entity
@@ -14,11 +15,16 @@ public class Entry {
 	@Id
 	@GeneratedValue
 	private long id;
+	@NotNull
 	private String name;
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date enrollmentStartDate;
+	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date enrollmentEndDate;
+	
+	public Entry() {}
 	
 	public Entry(String name, Date enrollmentStartDate, Date enrollmentEndDate) {
 		super();
