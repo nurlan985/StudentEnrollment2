@@ -17,25 +17,7 @@ import edu.miu.cs.cs544.group1.repository.FacultyRepository;
 @SpringBootApplication
 //@EnableJpaRepositories("edu.miu.cs.cs544.group1.repository")
 public class StudentEnrollmentApplication {
-
-	  private static final Logger log = LoggerFactory.getLogger(StudentEnrollmentApplication.class);
-
 	public static void main(String[] args) {
 		SpringApplication.run(StudentEnrollmentApplication.class, args);
 	}
-
-	@Bean
-  public CommandLineRunner demo(FacultyRepository repository) {
-    return (args) -> {
-
-      repository.save(
-    		  new Faculty(
-    				  "Nurlan", 
-    				  "nurlan985@gmail.com", 
-    				  "123", 
-    				  new HashSet<Role>(Arrays.asList(Role.ROLEADMIN)), 
-    				  "Professor"));
-
-    };
-  }
 }

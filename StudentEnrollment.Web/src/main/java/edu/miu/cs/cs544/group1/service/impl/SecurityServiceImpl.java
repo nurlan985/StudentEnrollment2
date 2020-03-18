@@ -1,13 +1,18 @@
 package edu.miu.cs.cs544.group1.service.impl;
 
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+
+import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import edu.miu.cs.cs544.group1.domain.security.Faculty;
 import edu.miu.cs.cs544.group1.domain.security.Person;
+import edu.miu.cs.cs544.group1.domain.security.Role;
 import edu.miu.cs.cs544.group1.domain.security.Student;
 import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
 import edu.miu.cs.cs544.group1.repository.FacultyRepository;
@@ -27,6 +32,16 @@ public class SecurityServiceImpl implements SecurityService{
 	@Autowired
 	FacultyRepository facultyRepository;
 		
+	@PostConstruct
+	public void init() {
+		facultyRepository.save(
+	    		  new Faculty(
+	    				  "Nurlan", 
+	    				  "nurlan985@gmail.com", 
+	    				  "123", 
+	    				  new HashSet<Role>(Arrays.asList(Role.ROLEADMIN)), 
+	    				  "Professor"));
+	}
 	@Override
 	public Student addStudent(Student student) {
 		return studentRepository.save(student);
