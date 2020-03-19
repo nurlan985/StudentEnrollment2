@@ -11,12 +11,10 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.SessionAttributes;
 
 import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.domain.security.Faculty;
 import edu.miu.cs.cs544.group1.domain.security.Student;
-import edu.miu.cs.cs544.group1.repository.FacultyRepository;
 import edu.miu.cs.cs544.group1.service.FacultyService;
 import edu.miu.cs.cs544.group1.service.SectionService;
 import edu.miu.cs.cs544.group1.service.StudentService;
@@ -39,7 +37,7 @@ public class FacultyController {
 		return facultyService.getFaculties();
 	}
 	
-	@PostMapping("/add")
+	@PostMapping("/")
 	public Faculty save(Faculty faculty) {
 		
 		return facultyService.createFaculty(faculty);
@@ -48,15 +46,15 @@ public class FacultyController {
 	
 	
 	@GetMapping("/{Id}")
-	public Faculty getSection(@PathVariable Long Id) {
+	public Faculty getFaculty(@PathVariable Long Id) {
 
 		
 		return facultyService.getFaculty(Id);
 	}
 	
 
-	@PutMapping("/update/{id}")
-	public Faculty updateSevtion(@PathVariable Long id, @RequestBody Faculty faculty){
+	@PutMapping("/{id}")
+	public Faculty updateFaculty(@PathVariable Long id, @RequestBody Faculty faculty){
 		Faculty updatedFaculty=null;
 		try {
 			updatedFaculty= facultyService.updateFaculty(id, faculty);
@@ -68,8 +66,8 @@ public class FacultyController {
 		
 	}
 
-	@DeleteMapping("/delete/{id}")
-	public Faculty deleteSection(@PathVariable Long id) throws Exception {
+	@DeleteMapping("/{id}")
+	public Faculty deleteFaculty(@PathVariable Long id) throws Exception {
 		return facultyService.deleteFaculty(id);
 	}
 
