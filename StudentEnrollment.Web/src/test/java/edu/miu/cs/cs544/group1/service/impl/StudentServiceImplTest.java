@@ -5,11 +5,15 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.runner.RunWith;
+import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -30,14 +34,26 @@ class StudentServiceImplTest {
 	@MockBean
 	private StudentRepository studentRepo;
 	
-	@Test
-	public void addStudentTest() {
+	Student s1;
+	Student s2;
+	List<Student> students = new ArrayList<>();
+	
+	@BeforeEach
+	void setUp() throws Exception{
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(Role.ROLESTUDENT);
-		Student student = new Student("James", "ij@abc.xyz", "12345", roles, "610569");
+		MockitoAnnotations.initMocks(this);
+		s1 = new Student("James", "ij@abc.xyz", "12345", roles, "610569");
+		s2 = new Student("John", "jd@abc.xyz", "12345", roles, "788569");
+		students.add(s1);
+		students.add(s2);
+	}
+	
+	@Test
+	public void addStudentTest() {
 		
-		when(studentRepo.save(student)).thenReturn(student);
-		assertEquals(student, studentService.addStudent(student));
+		when(studentRepo.save(s1)).thenReturn(s1);
+		assertEquals(s1, studentService.addStudent(s1));
 	}
 	
 	@Test
@@ -49,5 +65,14 @@ class StudentServiceImplTest {
 		studentService.deleteStudent(student.getId());
 		verify(studentRepo, times(1)).delete(student);
 		
+		studentService.deleteStudent(s1.getId());
+		verify(studentRepo, times(1)).delete(s1);
 	} 
+	
+	@Test
+	public void getAllStudentsTest() {
+		
+		when(studentRepo.findAll()).thenReturn(students);
+		assertEquals(2, studentService.getStudents().size());
+	}
 }
