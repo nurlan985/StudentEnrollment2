@@ -11,6 +11,9 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 @SpringBootTest
 class EntryServiceImplTest {
 
-//	Entry
+	@Test
+	void test() {
+		fail("Not yet implemented");
+	}
 
 }
