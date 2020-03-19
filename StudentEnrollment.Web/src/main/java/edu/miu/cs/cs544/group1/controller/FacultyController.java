@@ -76,7 +76,7 @@ public class FacultyController {
 		return sectionService.getSectionsByFacultyId(facultyId);
 	}
 	
-	@GetMapping(value = "/students/{facultyId}/{sectionId}")
+	@GetMapping(value = "/{facultyId}/students/{sectionId}")
 	public List<Student> getStudents(@PathVariable long facultyId, @PathVariable long sectionId) {
 		return studentService.getStudentsByFacultyIdAndSectionId(facultyId, sectionId);
 	}

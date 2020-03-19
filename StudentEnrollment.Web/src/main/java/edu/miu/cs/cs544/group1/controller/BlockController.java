@@ -104,12 +104,12 @@ public class BlockController {
 		return  ResponseEntity.noContent().build();
 	}
 
-	@GetMapping(value = "/sections/{blockId}")
+	@GetMapping(value = "/{blockId}/sections")
 	public List<Section> getSections(@PathVariable long blockId) {
 		return sectionService.getSectionsByBlockId(blockId);
 	}
 	
-	@GetMapping(value = "/offerings/{blockId}")
+	@GetMapping(value = "/{blockId}/offerings")
 	public List<Offering> getOfferings(@PathVariable long blockId) {
 		return offeringService.getOfferingsByBlockId(blockId);
 	}
