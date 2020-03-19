@@ -73,6 +73,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .antMatchers(HttpMethod.DELETE, "/address/**").hasRole(Role.ROLEADMIN.toString())
             .antMatchers(HttpMethod.GET, "/address/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
                
+            .antMatchers(HttpMethod.POST, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+  
+            .antMatchers(HttpMethod.POST, "/students/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/students/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/students/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/students/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString())
             
             .antMatchers("/anonymous*").anonymous()// access=none
             .antMatchers("/login*").permitAll()
