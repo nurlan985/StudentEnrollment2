@@ -43,15 +43,30 @@ public class Student extends Person {
 		this.studentId = studentId;
 	}
 
-	public String getStudentId() {
-		return studentId;
+	public Entry getEntry() {
+		return entry;
 	}
 
-	public void setStudentId(String studentId) {
-		this.studentId = studentId;
+	public void setEntry(Entry entry) {
+		this.entry = entry;
 	}
-	public void addSection(Section section) {
-		sections.add(section);
+
+	public Address getHomeAddress() {
+		return homeAddress;
 	}
+
+	public void setHomeAddress(Address homeAddress) {
+		this.homeAddress = homeAddress;
+	}
+
+	public Address getMailingAddress() {
+		return mailingAddress;
+	}
+
+	public void setMailingAddress(Address mailingAddress) {
+		this.mailingAddress = mailingAddress;
+	}
+
+	
 	
 }

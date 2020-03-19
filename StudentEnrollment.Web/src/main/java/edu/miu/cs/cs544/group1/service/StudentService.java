@@ -13,7 +13,7 @@ public interface StudentService {
 
 	public List<Student> getStudents();
 
-	public Student getCourse(long studentId) throws NoSuchResouceException;
+	public Student getStudent(long studentId) throws NoSuchResouceException;
 
 	public Student updateStudent(long studentId, Student students) throws NoSuchResouceException;
 
