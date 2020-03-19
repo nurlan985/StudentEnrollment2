@@ -2,12 +2,9 @@ package edu.miu.cs.cs544.group1.service.impl;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Propagation;
 
 import edu.miu.cs.cs544.group1.domain.Course;
 import edu.miu.cs.cs544.group1.domain.Section;
