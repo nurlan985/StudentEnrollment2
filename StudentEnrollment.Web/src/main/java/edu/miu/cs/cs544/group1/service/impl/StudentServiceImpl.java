@@ -37,7 +37,7 @@ public class StudentServiceImpl implements  StudentService {
 	}
 
 	@Override
-	public Student getCourse(long studentId) throws NoSuchResouceException {
+	public Student getStudent(long studentId) throws NoSuchResouceException {
 		// TODO Auto-generated method stub
 		return null;
 	}
