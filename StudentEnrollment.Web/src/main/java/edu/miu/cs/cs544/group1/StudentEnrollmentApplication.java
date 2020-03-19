@@ -12,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import org.springframework.context.annotation.Bean;
 
+import edu.miu.cs.cs544.group1.domain.Address;
 import edu.miu.cs.cs544.group1.domain.Block;
 import edu.miu.cs.cs544.group1.domain.Course;
 import edu.miu.cs.cs544.group1.domain.Entry;
@@ -21,6 +22,7 @@ import edu.miu.cs.cs544.group1.domain.Semester;
 import edu.miu.cs.cs544.group1.domain.security.Faculty;
 import edu.miu.cs.cs544.group1.domain.security.Role;
 import edu.miu.cs.cs544.group1.domain.security.Student;
+import edu.miu.cs.cs544.group1.repository.AddressRepository;
 import edu.miu.cs.cs544.group1.repository.BlockRepository;
 import edu.miu.cs.cs544.group1.repository.CourseRepository;
 import edu.miu.cs.cs544.group1.repository.EntryRepository;
@@ -55,9 +57,12 @@ public class StudentEnrollmentApplication {
 			BlockRepository blockRepository,
 			OfferingRepository offeringRepository,
 			SectionRepository sectionRepository,
-			EntryRepository entryRepository
+			EntryRepository entryRepository,
+			AddressRepository addressRepository
 			) {
 		return (args) -> {
+			Address address = new Address("1000 N 4th", "Fairfield", 52557, "US");
+			address = addressRepository.save(address);
 			Faculty nurlan = new Faculty("Nurlan", "nurlan985@gmail.com", "123",
 					new HashSet<Role>(Arrays.asList(Role.ROLEFACULTY)), "Professor");
 			nurlan = repository.save(nurlan);
@@ -104,6 +109,8 @@ public class StudentEnrollmentApplication {
 					"610576");
 			stu.addSection(sec);
 			stu.addSection(sec2);
+			stu.setHomeAddress(address);
+			stu.setMailingAddress(address);
 			stu.setEntry(entry);
 			stu = studentRepository.save(stu);
 	
