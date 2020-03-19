@@ -48,7 +48,7 @@ public class SecurityServiceImpl implements SecurityService{
 
 		Student student = studentRepository.findById(studentId).orElseThrow(() -> new  NoSuchResouceException("No Student found  with" , studentId));
 		
-		student.setStudentId(student_update.getStudentId());
+		student.setId(student_update.getId());
 		student.setName(student_update.getName());
 		student.setEmail(student_update.getEmail());
 		
