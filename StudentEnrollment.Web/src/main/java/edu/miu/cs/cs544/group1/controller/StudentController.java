@@ -1,7 +1,6 @@
 package edu.miu.cs.cs544.group1.controller;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -40,7 +39,6 @@ public class StudentController extends BaseController{
 	public Student save(Student student) {
 	  return studentService.addStudent(student);
 	}
-	
 	@GetMapping("/{Id}")
 	public Student getStudent(@PathVariable long Id){
 	  return studentService.getStudent(Id);
@@ -75,5 +73,6 @@ public class StudentController extends BaseController{
 	@GetMapping(value = "/sections/{studentId}")
 	public List<Section> getSections(@PathVariable long studentId) {
 		return sectionService.getSectionsByStudentId(studentId);
-	}	 
+	}
+	
 }
