@@ -2,9 +2,7 @@ package edu.miu.cs.cs544.group1.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.HttpMethod;
-import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
-import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -44,6 +42,46 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .antMatchers(HttpMethod.PUT, "/sections/**").hasRole(Role.ROLEADMIN.toString())
             .antMatchers(HttpMethod.DELETE, "/sections/**").hasRole(Role.ROLEADMIN.toString())
             .antMatchers(HttpMethod.GET, "/sections/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
+            
+            .antMatchers(HttpMethod.POST, "/offerings/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/offerings/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/offerings/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/offerings/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
+             
+            .antMatchers(HttpMethod.POST, "/courses/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/courses/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/courses/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/courses/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
+                
+            .antMatchers(HttpMethod.POST, "/entries/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/entries/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/entries/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/entries/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
+                      
+            .antMatchers(HttpMethod.POST, "/courses/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/courses/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/courses/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/courses/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
+           
+            .antMatchers(HttpMethod.POST, "/block/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/block/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/block/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/block/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
+                     
+            .antMatchers(HttpMethod.POST, "/address/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/address/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/address/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/address/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString(), Role.ROLESTUDENT.toString())
+               
+            .antMatchers(HttpMethod.POST, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
+  
+            .antMatchers(HttpMethod.POST, "/students/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/students/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.DELETE, "/students/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.GET, "/students/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString())
             
             .antMatchers("/anonymous*").anonymous()// access=none
             .antMatchers("/login*").permitAll()
