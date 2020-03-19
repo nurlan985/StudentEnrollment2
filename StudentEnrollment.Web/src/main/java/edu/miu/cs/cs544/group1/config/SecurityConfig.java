@@ -79,8 +79,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter
             .antMatchers(HttpMethod.GET, "/faculty/**").hasRole(Role.ROLEADMIN.toString())
   
             .antMatchers(HttpMethod.POST, "/students/**").hasRole(Role.ROLEADMIN.toString())
-            .antMatchers(HttpMethod.PUT, "/students/**").hasRole(Role.ROLEADMIN.toString())
+//            .antMatchers(HttpMethod.PUT, "/students/**").hasRole(Role.ROLEADMIN.toString())
             .antMatchers(HttpMethod.DELETE, "/students/**").hasRole(Role.ROLEADMIN.toString())
+            .antMatchers(HttpMethod.PUT, "/students/enrollment/*").hasRole(Role.ROLESTUDENT.toString())
             .antMatchers(HttpMethod.GET, "/students/**").hasAnyRole(Role.ROLEADMIN.toString(), Role.ROLEFACULTY.toString())
             
             .antMatchers("/anonymous*").anonymous()// access=none

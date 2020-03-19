@@ -41,7 +41,10 @@ public class Offering {
 	}
 
 	public String getCode() {
-		return course.getCode() + "-" + block.getCode();
+		if(course!=null && block!=null) {
+			return course.getCode() + "-" + block.getCode();
+		}
+		return id + "";
 	}
 
 	public long getId() {

@@ -17,6 +17,11 @@ public class Entry {
 	private long id;
 	@NotNull
 	private String name;
+	
+	@NotNull
+	@Temporal(TemporalType.DATE)
+	private Date startDate;
+
 	@NotNull
 	@Temporal(TemporalType.DATE)
 	private Date enrollmentStartDate;
@@ -26,13 +31,21 @@ public class Entry {
 	
 	public Entry() {}
 	
-	public Entry(String name, Date enrollmentStartDate, Date enrollmentEndDate) {
+	public Entry(String name, Date startDate, Date enrollmentStartDate, Date enrollmentEndDate) {
 		super();
 		this.name = name;
+		this.startDate = startDate;
 		this.enrollmentStartDate = enrollmentStartDate;
 		this.enrollmentEndDate = enrollmentEndDate;
 	}
-	
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
 	public Date getEnrollmentStartDate() {
 		return enrollmentStartDate;
 	}

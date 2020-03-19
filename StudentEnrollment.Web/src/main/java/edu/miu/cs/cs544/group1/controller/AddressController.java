@@ -20,7 +20,7 @@ import edu.miu.cs.cs544.group1.service.AddressService;
 
 
 @RestController
-@RequestMapping("/address")
+@RequestMapping("/addresses")
 public class AddressController {
 	
 	@Autowired
