@@ -58,6 +58,7 @@ class StudentServiceImplTest {
 	
 	@Test
 	public void deleteStudentTest() {
+<<<<<<< Updated upstream
 		Set<Role> roles = new HashSet<Role>();
 		roles.add(Role.ROLESTUDENT);
 		Student student = new Student("James", "ij@abc.xyz", "12345", roles, "610569");
@@ -66,6 +67,10 @@ class StudentServiceImplTest {
 		verify(studentRepo, times(1)).delete(student);
 		
 		studentService.deleteStudent(s1.getId());
+=======
+		
+		studentService.deleteStudent(s1);
+>>>>>>> Stashed changes
 		verify(studentRepo, times(1)).delete(s1);
 	} 
 	
@@ -73,6 +78,10 @@ class StudentServiceImplTest {
 	public void getAllStudentsTest() {
 		
 		when(studentRepo.findAll()).thenReturn(students);
+<<<<<<< Updated upstream
 		assertEquals(2, studentService.getStudents().size());
+=======
+		assertEquals(2, studentService.getAllStudents().size());
+>>>>>>> Stashed changes
 	}
 }
