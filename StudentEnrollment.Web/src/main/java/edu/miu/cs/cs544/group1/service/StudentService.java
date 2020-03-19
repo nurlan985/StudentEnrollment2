@@ -24,9 +24,10 @@ public interface StudentService {
 	public List<Student> getStudentsBySectionId(long sectionId);
 	
 
-	public boolean makeEnrollment(long sectionId, Student student);
+	public String makeEnrollment(long sectionId, Student student);
 
 	public List<Student> getStudentsByEntryId(long entryId);
 
+	public String updateStudentEnrolment(long studentId, long[] sectionIds);
 
 }

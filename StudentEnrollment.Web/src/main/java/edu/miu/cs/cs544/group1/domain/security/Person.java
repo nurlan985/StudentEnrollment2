@@ -3,6 +3,8 @@ package edu.miu.cs.cs544.group1.domain.security;
 import java.util.Set;
 import javax.persistence.*;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "Person.findByEmailAndPassword", query = "FROM Person p WHERE LOWER(p.email) = LOWER(?1) and p.password = ?2")
@@ -13,8 +15,10 @@ public abstract class Person {
 	private String name;
 	@Column(unique = true)
 	private String email;
+	@JsonIgnore
 	private String password;
 
+	@JsonIgnore
 	@ElementCollection
 	@CollectionTable(name = "personRole", joinColumns = @JoinColumn(name = "personId"))
 	@Column(name = "authority", nullable = false)

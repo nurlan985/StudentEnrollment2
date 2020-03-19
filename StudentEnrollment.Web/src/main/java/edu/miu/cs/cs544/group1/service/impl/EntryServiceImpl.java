@@ -44,9 +44,9 @@ public class EntryServiceImpl implements EntryService{
 				.orElseThrow(() -> new NoSuchResouceException("No Entry with id " + id, id));
 		
 		e.setName(entry.getName());
+		e.setStartDate(entry.getStartDate());
 		e.setEnrollmentEndDate(entry.getEnrollmentEndDate());
 		e.setEnrollmentStartDate(entry.getEnrollmentStartDate());
-	
 		return entryRepository.save(e);
 	
 	}

@@ -21,58 +21,61 @@ import edu.miu.cs.cs544.group1.service.StudentService;
 
 @RestController
 @RequestMapping("/students")
-public class StudentController extends BaseController{
-	
+public class StudentController extends BaseController {
+
 	@Autowired
 	private SectionService sectionService;
-	
+
 	@Autowired
 	private StudentService studentService;
-	
-	  @GetMapping("/") 
-	  public List<Student> getStudents()
-	   { 
-		  return studentService.getStudents();
-    }
-  
+
+	@GetMapping("/")
+	public List<Student> getStudents() {
+		return studentService.getStudents();
+	}
+
 	@PostMapping("/")
 	public Student save(Student student) {
-	  return studentService.addStudent(student);
+		return studentService.addStudent(student);
 	}
+
 	@GetMapping("/{Id}")
-	public Student getStudent(@PathVariable long Id){
-	  return studentService.getStudent(Id);
-  }
-		
-	  @PutMapping("/{id}")
-	  public Student updateStudent(@PathVariable Long id, @RequestBody Student student) {
-		  
-		  return studentService.updateStudent(id, student);
-	  }
-	  
-	  @DeleteMapping("/{id}")
-	  public ResponseEntity<Void> Delete(@PathVariable Long id) {
-		  return studentService.deleteStudent(id);
-	  }
+	public Student getStudent(@PathVariable long Id) {
+		return studentService.getStudent(Id);
+	}
+
+	@PutMapping("/{id}")
+	public Student updateStudent(@PathVariable Long id, @RequestBody Student student) {
+
+		return studentService.updateStudent(id, student);
+	}
+	
+	@PutMapping("/{studentId}/updateEnrollments")
+	public String updateStudentEnrollments(@PathVariable long studentId, @RequestBody long[] sectionIds) {
+		return studentService.updateStudentEnrolment(studentId, sectionIds);
+	}
+
+	@DeleteMapping("/{id}")
+	public ResponseEntity<Void> Delete(@PathVariable Long id) {
+		return studentService.deleteStudent(id);
+	}
 
 	@PutMapping("/enrollment/{sectionId}")
 	public String makeEnroll(@PathVariable long sectionId) {
 		Student currentStudent = getCurrentStudent();
-		if(currentStudent != null) {
+		if (currentStudent != null) {
 			try {
-				if(studentService.makeEnrollment(sectionId, currentStudent)) {
-					return "Success";
-				}
-			}catch (Exception e) {
+				return studentService.makeEnrollment(sectionId, currentStudent);
+			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
-		return "Fail";
+		return "Authontication fail";
 	}
 
 	@GetMapping(value = "/sections/{studentId}")
 	public List<Section> getSections(@PathVariable long studentId) {
 		return sectionService.getSectionsByStudentId(studentId);
 	}
-	
+
 }

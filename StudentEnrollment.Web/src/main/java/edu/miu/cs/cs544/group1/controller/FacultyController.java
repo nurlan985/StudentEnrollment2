@@ -20,7 +20,7 @@ import edu.miu.cs.cs544.group1.service.SectionService;
 import edu.miu.cs.cs544.group1.service.StudentService;
 
 @RestController
-@RequestMapping("/faculty")
+@RequestMapping("/faculties")
 public class FacultyController {
 	@Autowired
 	FacultyService facultyService;
