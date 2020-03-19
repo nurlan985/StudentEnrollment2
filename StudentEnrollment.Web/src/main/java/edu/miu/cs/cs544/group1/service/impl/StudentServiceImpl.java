@@ -76,4 +76,8 @@ public class StudentServiceImpl implements  StudentService {
 		return false;
 	}
 
+	public List<Student> getStudentsByEntryId(long entryId) {
+		return studentRepository.findAllStudentsByEntryId(entryId);
+	}
+
 }

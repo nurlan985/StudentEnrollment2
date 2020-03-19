@@ -11,7 +11,6 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 
 import edu.miu.cs.cs544.group1.domain.Address;
 import edu.miu.cs.cs544.group1.domain.Entry;
@@ -19,6 +18,7 @@ import edu.miu.cs.cs544.group1.domain.Section;
 
 @Entity
 @NamedQuery(name = "Student.findOneByEmail", query = "SELECT s FROM Student s WHERE s.email = ?1")
+@NamedQuery(name = "Student.findAllStudentsByEntryId", query = "SELECT s FROM Student s WHERE s.entry.id = ?1")
 public class Student extends Person {
 	private String studentId;
 	
