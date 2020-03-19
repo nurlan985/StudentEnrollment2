@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 
 import edu.miu.cs.cs544.group1.domain.Course;
+import edu.miu.cs.cs544.group1.domain.Section;
 import edu.miu.cs.cs544.group1.domain.security.Student;
 import edu.miu.cs.cs544.group1.exceptions.NoSuchResouceException;
 import edu.miu.cs.cs544.group1.repository.SectionRepository;
@@ -40,7 +41,6 @@ public class StudentServiceImpl implements  StudentService {
 	@Override
 	public Student getStudent(long studentId) throws NoSuchResouceException {
 		Student student = studentRepository.findById(studentId).orElseThrow(()-> new  NoSuchResouceException("No Student found  with", studentId));
-
 		return student;
 	}
 
@@ -81,6 +81,21 @@ public class StudentServiceImpl implements  StudentService {
 	@Override
 	public List<Student> getStudentsBySectionId(long sectionId) {
 		return sectionRepository.findAllStudentsBySectionId(sectionId);
+	}
+
+	@Override
+	public boolean makeEnrollment(long sectionId, Student stu) {
+		Section section = sectionRepository.findById(sectionId).orElse(null);
+		Student student = studentRepository.findById(stu.getId()).orElse(null);
+		if(section != null && student != null) {
+			student.addSection(section);
+			studentRepository.save(student);
+		}
+		return false;
+	}
+
+	public List<Student> getStudentsByEntryId(long entryId) {
+		return studentRepository.findAllStudentsByEntryId(entryId);
 	}
 
 }
