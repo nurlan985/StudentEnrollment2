@@ -37,7 +37,7 @@ public class EntryController {
 	}
 	
 	//a method to display a specific entry.
-	@GetMapping("/{id}")
+	@GetMapping("/{entryId}")
 	public Entry getEntry(@PathVariable long entryId) throws NoSuchResouceException{
 		
 		Optional<Entry> entry = entryService.getEntry(entryId);
@@ -50,13 +50,13 @@ public class EntryController {
 	}
 	
 	//a method to to insert new entry
-	@PostMapping(value="/add")
+	@PostMapping(value="/")
 	public Entry addEntry(@RequestBody Entry entry) {
 		return entryService.addEntry(entry);
 	}
 	
 	//a method to update existing entry.
-	@PutMapping(value="/update/{id}")
+	@PutMapping(value="/{entryId}")
 	public Entry updateEntry(@PathVariable long entryId, @RequestBody Entry entry) {
 		Optional<Entry> e = entryService.getEntry(entryId);
 		
@@ -68,7 +68,7 @@ public class EntryController {
 	}
 	
 	//a method to delete a single entry.
-	@DeleteMapping(value="/delete/{id}")
+	@DeleteMapping(value="/{entryId}")
 	public Long deleteEntry(@PathVariable long entryId) {
 		
 		Optional<Entry> entry = entryService.getEntry(entryId);
@@ -80,9 +80,8 @@ public class EntryController {
         }
 	}
 	//a method returning list of students in an entry
-	@GetMapping(value="/students/{id}")
+	@GetMapping(value="/students/{entryId}")
 	public List<Student> getStudent(@PathVariable long entryId) {
-		
 		return studentService.getStudentsByEntryId(entryId);
 	}	
 	

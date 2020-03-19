@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import edu.miu.cs.cs544.group1.domain.security.ChangePasswordModel;
 import edu.miu.cs.cs544.group1.domain.security.Faculty;
 import edu.miu.cs.cs544.group1.domain.security.Person;
 import edu.miu.cs.cs544.group1.domain.security.Student;
@@ -29,58 +30,6 @@ public class SecurityServiceImpl implements SecurityService{
 	FacultyRepository facultyRepository;
 		
 	@Override
-	public Student addStudent(Student student) {
-		return studentRepository.save(student);
-	}
-
-	@Override
-	public List<Student> getStudentes() {
-		return studentRepository.findAll();
-	}
-
-	@Override
-	public Optional<Student> getStudent(long studentId) throws NoSuchResouceException {
-		return studentRepository.findById(studentId);
-	}
-
-	@Override
-	public Student updateStudent(long studentId, Student student_update) {
-
-		Student student = studentRepository.findById(studentId).orElseThrow(() -> new  NoSuchResouceException("No Student found  with" , studentId));
-		
-		student.setId(student_update.getId());
-		student.setName(student_update.getName());
-		student.setEmail(student_update.getEmail());
-		
-		return studentRepository.save(student);
-		
-	}
-
-	@Override
-	public Faculty addStudent(Faculty faculty) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<Faculty> getFaculties() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Optional<Faculty> getFaculty(long facultyId) throws NoSuchResouceException {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Faculty updateFaculty(long facultyId, Faculty faculty) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
 	public boolean checkLogin(String email, String password) {
 		List<Person> person = personRepository.findByEmailAndPassword(email, password);
 		return(person.size() == 1);		
@@ -91,4 +40,21 @@ public class SecurityServiceImpl implements SecurityService{
 		return personRepository.findAll();
 	}
 
+	@Override
+	public String changePassword(long id, ChangePasswordModel changePwd) {
+		Person person = personRepository.findById(id).orElse(null);
+		if(person != null) {
+			String personPassword = person.getPassword();
+			if(!personPassword.equals(changePwd.getOldPwd())) {
+				return "Old password is not correct";
+			}
+			if(changePwd.getNewPwd().equals(changePwd.getConfirmPwd())) {
+				person.setPassword(changePwd.getNewPwd());
+				person = personRepository.save(person);
+				return "Success";
+			}
+			return "Passwords dont match";
+		}
+		return "User does not exist";
+	}
 }

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 @NamedQuery(name = "Person.findByEmailAndPassword", query = "FROM Person p WHERE LOWER(p.email) = LOWER(?1) and p.password = ?2")
+@NamedQuery(name = "Person.findPersonByEmail", query = "SELECT p FROM Person p WHERE p.email = ?1")
 public abstract class Person {
 	@Id
 	@GeneratedValue
