@@ -83,7 +83,7 @@ public class EntryController {
 	@GetMapping(value="/students/{id}")
 	public List<Student> getStudent(@PathVariable long entryId) {
 		
-		return studentService.getStudents();
+		return studentService.getStudentsByEntryId(entryId);
 	}	
 	
 }

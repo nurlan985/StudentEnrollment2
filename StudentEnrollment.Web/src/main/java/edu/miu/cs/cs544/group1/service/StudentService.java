@@ -26,4 +26,7 @@ public interface StudentService {
 
 	public boolean makeEnrollment(long sectionId, Student student);
 
+	public List<Student> getStudentsByEntryId(long entryId);
+
+
 }
