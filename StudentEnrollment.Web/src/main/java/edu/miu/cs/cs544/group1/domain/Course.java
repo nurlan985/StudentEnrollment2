@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 public class Course {
@@ -13,11 +16,18 @@ public class Course {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
-	
+
+	@NotBlank(message = "this field is required")
+	@Size(max = 2000)
+	@Column(length = 2000)
 	private String description;
-	
+
+	@NotBlank(message = "this field is required")
 	private String name;
-	
+
+	@NotBlank(message = "this field is required")
+	@Size(min = 3 , max = 7)
+	@Column(length = 7)
 	private String code;
 
 	

@@ -13,6 +13,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Columns;
 
@@ -35,6 +38,7 @@ public class Section {
 	private long id;
 	
 	@Column(name="sectionDesc")
+	@NotBlank
 	private String name;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "facultyId", nullable = true)

@@ -3,10 +3,11 @@ package edu.miu.cs.cs544.group1.domain.security;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 public class Faculty extends Person {
-	
+	@NotBlank
 	private String title;
 
 	public Faculty() {

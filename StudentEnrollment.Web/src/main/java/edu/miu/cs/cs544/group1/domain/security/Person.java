@@ -2,6 +2,9 @@ package edu.miu.cs.cs544.group1.domain.security;
 
 import java.util.Set;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -13,8 +16,11 @@ public abstract class Person {
 	@Id
 	@GeneratedValue
 	private long id;
+	@NotBlank(message = "this field is required")
 	private String name;
 	@Column(unique = true)
+	@NotBlank(message = "this field is required")
+	@Email
 	private String email;
 	@JsonIgnore
 	private String password;
@@ -24,6 +30,7 @@ public abstract class Person {
 	@CollectionTable(name = "personRole", joinColumns = @JoinColumn(name = "personId"))
 	@Column(name = "authority", nullable = false)
 	@Enumerated(EnumType.STRING)
+	@Size(min = 1)
 	private Set<Role> roles;
 
 	public Person() {}
