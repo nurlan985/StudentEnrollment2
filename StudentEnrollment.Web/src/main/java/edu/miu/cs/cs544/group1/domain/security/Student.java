@@ -12,6 +12,9 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import edu.miu.cs.cs544.group1.domain.Address;
@@ -24,18 +27,26 @@ import edu.miu.cs.cs544.group1.domain.Section;
 @NamedQuery(name = "Student.findAllByFacultyIdAndSectionId", query = "select s FROM Student s JOIN s.sections sec WHERE sec.faculty.id = ?1 and sec.id = ?2")
 @NamedQuery(name = "Student.findAllBySectionId", query = "SELECT s FROM Student s JOIN s.sections sec WHERE sec.id = ?1")
 public class Student extends Person {
+	@Valid
+	@NotBlank(message = "this field is required")
 	private String studentId;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
+	@Valid
+	@NotNull(message = "this field is required")
 	private Entry entry;
 	
 	@ManyToOne
+	@Valid
+	@NotNull(message = "this field is required")
 	private Address homeAddress;
 	
 	@ManyToOne
+	@Valid
+	@NotNull(message = "this field is required")
 	private Address mailingAddress;
 	
-	@Size(max = 3)
+	@Size(max = 4)
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name="Enrolment", joinColumns = {@JoinColumn(name="studentId")},
 	inverseJoinColumns = {@JoinColumn(name="sectionId")})

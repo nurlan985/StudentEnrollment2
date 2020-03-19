@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQuery;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @NamedQuery(name = "Section.findAllByCourseId", query = "select o FROM Offering o  WHERE o.course.id = ?1")
@@ -20,10 +22,14 @@ public class Offering {
 
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "courseId", nullable = false)
+	@Valid
+	@NotNull
 	private Course course;
 	
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "blockId", nullable = false)
+	@Valid
+	@NotNull
 	private Block block;
 	
 	
