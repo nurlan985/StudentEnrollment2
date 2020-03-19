@@ -103,6 +103,7 @@ public class StudentEnrollmentApplication {
 					new HashSet<Role> (Arrays.asList(Role.ROLESTUDENT)),
 					"610576");
 			stu.addSection(sec);
+			stu.addSection(sec2);
 			stu.setEntry(entry);
 			stu = studentRepository.save(stu);
 	

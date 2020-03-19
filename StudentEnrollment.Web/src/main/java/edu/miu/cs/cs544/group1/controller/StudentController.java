@@ -73,7 +73,7 @@ public class StudentController extends BaseController {
 		return "Authontication fail";
 	}
 
-	@GetMapping(value = "/sections/{studentId}")
+	@GetMapping(value = "/{studentId}/sections")
 	public List<Section> getSections(@PathVariable long studentId) {
 		return sectionService.getSectionsByStudentId(studentId);
 	}
