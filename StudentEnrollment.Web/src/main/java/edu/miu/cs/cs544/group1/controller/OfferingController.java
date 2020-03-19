@@ -110,7 +110,7 @@ public class OfferingController {
 		return  ResponseEntity.noContent().build();
 	}
 
-	@GetMapping(value = "/sections/{offeringId}")
+	@GetMapping(value = "/{offeringId}/sections")
 	public List<Section> getSections(@PathVariable long offeringId) {
 		return sectionService.getSectionsByOfferingId(offeringId);
 	}

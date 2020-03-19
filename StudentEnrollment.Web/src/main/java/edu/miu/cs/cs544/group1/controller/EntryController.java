@@ -80,7 +80,7 @@ public class EntryController {
         }
 	}
 	//a method returning list of students in an entry
-	@GetMapping(value="/students/{entryId}")
+	@GetMapping(value="/{entryId}/students")
 	public List<Student> getStudent(@PathVariable long entryId) {
 		return studentService.getStudentsByEntryId(entryId);
 	}	

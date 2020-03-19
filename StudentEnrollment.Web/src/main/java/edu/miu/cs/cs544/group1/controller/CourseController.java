@@ -112,12 +112,12 @@ public class CourseController {
 	}
 	
 
-	@GetMapping(value = "/sections/{courseId}")
+	@GetMapping(value = "/{courseId}/sections")
 	public List<Section> getSections(long courseId) {
 		return sectionService.getSectionsByCourseId(courseId);
 	}
 	
-	@GetMapping(value = "/offerings/{courseId}")
+	@GetMapping(value = "/{courseId}/offerings")
 	public List<Offering> getOfferings(long courseId) {
 		return offeringService.getOfferingsByCourseId(courseId);
 	}
