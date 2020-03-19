@@ -70,7 +70,7 @@ public class SectionController {
 	}
 	
 
-	@GetMapping(value = "/{sectionId}/students")
+	@GetMapping(value = "/{sectionId}students")
 	public List<Student> getStudents(@PathVariable long sectionId) {
 		return studentService.getStudentsBySectionId(sectionId);
 	}

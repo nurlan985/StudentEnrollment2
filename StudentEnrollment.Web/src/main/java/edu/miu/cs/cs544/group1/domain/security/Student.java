@@ -29,10 +29,10 @@ public class Student extends Person {
 	@ManyToOne(fetch = FetchType.EAGER)
 	private Entry entry;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Address homeAddress;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	private Address mailingAddress;
 	
 	@Size(max = 3)
